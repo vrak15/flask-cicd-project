@@ -146,7 +146,7 @@ stage('Build') {
                             docker run -d \
                                 --name flask-app \
                                 --restart unless-stopped \
-                                -p 80:5001 \
+                                -p 80:5000 \
                                 "$PREVIOUS_IMAGE"
 
                             echo "Rollback attempted to previous image."
