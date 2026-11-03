@@ -89,7 +89,7 @@ pipeline {
                     docker run -d \
                         --name flask-app \
                         --restart unless-stopped \
-                        -p 80:5001 \
+                        -p 80:5000 \
                         -e APP_VERSION="$NEW_IMAGE" \
                         "$NEW_IMAGE"
 
