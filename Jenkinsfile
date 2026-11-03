@@ -24,8 +24,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    python3 -m venv venv
-                    venv/bin/pip install -r requirements.txt
+                    test -f app.py
+                    test -f test_app.py
                     python3 -m compileall -q app.py
                 '''
             }
