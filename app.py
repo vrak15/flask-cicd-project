@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return """
     <h1>Flask CI/CD Application</h1>
-    <h2>Deployment Successful!</h2>
+    <h2>Deployments Successful!</h2>
     <p>Deployed using Jenkins, Docker, GitHub and AWS EC2.</p>
     """
 
