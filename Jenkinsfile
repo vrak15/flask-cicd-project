@@ -21,15 +21,45 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh '''
-                    test -f app.py
-                    test -f test_app.py
-                    python3 -m compileall -q app.py
-                '''
-            }
-        }
+        
+stage('Build') {
+    steps {
+        sh '''
+            set -e
+
+            echo "Checking application files"
+
+            test -f app.py
+            test -f test_app.py
+            test -f requirements.txt
+
+            echo "Creating Python virtual environment"
+
+            rm -rf venv
+
+            python3 -m venv venv
+
+            echo "Upgrading pip"
+
+            venv/bin/python -m pip install --upgrade pip
+
+            echo "Installing Python dependencies"
+
+            venv/bin/pip install -r requirements.txt
+
+            echo "Verifying pytest installation"
+
+            venv/bin/pytest --version
+
+            echo "Compiling application"
+
+            venv/bin/python -m compileall -q app.py
+
+            echo "Build completed successfully"
+        '''
+    }
+}
+
 
         stage('Test') {
             steps {
